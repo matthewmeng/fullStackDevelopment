@@ -1,0 +1,4 @@
+1. cant use git push on Windows
+    a. try to add github.com to hosts (not working)
+    b. change windows defender settings for Unauthority apps(not working)
+    c. change the default browser from chrome to edge (WORK)
