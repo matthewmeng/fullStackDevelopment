@@ -1,0 +1,185 @@
+1. Creating and nesting components
+    1. What's component?
+    A component is a piece of the UI that has its own logic and appearance(a button or an entire page)
+    /*
+    function MyButton() {
+      return (
+        <button>I'm a button</button>
+      );
+    }
+
+    export default function MyApp(){
+        return (
+            <div>
+                <h1> Welcome to my app</h1>
+                <MyButton/>
+            </div>
+
+       );
+    }
+    */
+
+    React component names must always start with a capital letter, while HTML tags must be lowercase.
+
+    2.Why do we need " import React from 'react' " in each file?
+    JSX syntax used in the component needs to be transpiled into JavaScript code that can be understood
+    by the browser.
+    React library provides methods like 'React.createElement()' to achieve this transformation.
+    So we need to import 'React' so that JSX can be transpiled correctly.
+
+    3.Why do we need 'export default XXX' XXX is the component;
+    it is used to export the 'XXX' component in other files within our project. When we 'import' a component
+    from another file, we usually use the 'export default' syntax to export it. This syntax allows us to import the
+    component using any name we want in teh importing file.
+
+    Using 'export default' allows us to have a simpler import statement and makes our code easier to read and maintain.
+    or we need to:
+    /*
+    export {abc} in XXX.js;
+
+    import {abc} from './XXX'; in App.js
+    */
+
+    now we could only:
+    /*
+    import xxx from './XXX';
+    */
+
+    3. Writing markup with JSX
+    JSX is stricter than HTML. we have to close tags like <br />. Our component also can't return multiple JSX tags.
+    We have to wrap them into a shared parent, like a <div> ... </div> or an empty <>...<> wrapper.
+    like:
+    /*
+    function AboutPage() {
+      return (
+        <>
+          <h1>About</h1>
+          <p>Hello there.<br />How do you do?</p>
+        </>
+      );
+    }
+    */
+    Online converter can be found to trans HTML to JSX.
+
+    4.Adding styles
+    In React, we specify a CSS class with className, which works the same way as the HTML class attribute:
+    <img className="avatar" />
+    Then we could write the CSS rule for it in a separate CSS file:
+    .avatar{
+        border-radius: 50%;
+    }
+
+    5.Displaying data
+    JSX lets us put markup into JavaScript.
+    i.e. to display user.name:
+    /*
+    return(
+        <h1>
+            {user.name}
+        </h1>
+    );
+    */
+
+    using curly braces instead of quotes to "escape into JavaScript":
+    return(
+        <img
+            className="avatar"
+            src={user.imageUrl}
+        />
+    );
+
+    5.Conditional rendering
+    except original if statement,
+    we can use: conditional?operator
+    if we don't need the else branch, we can also use a shorter logical && syntax:
+    like:
+    /*
+    <div>
+        (isLoggedIn && <AdminPanel />}
+    </div>
+    */
+
+    6.Rendering lists
+    rely on JavaScript features like for loop and the array map() function to render lists of components.
+    like:
+    /*
+    const products = [
+        {title: 'A', id:1},
+        {title: 'B', id:2},
+        {title: 'C', id:3}
+    ];
+
+    const listItems = products.map(product =>
+        <li key={product.id}>
+            {product.title}
+        </li>
+    );
+
+    return(
+        <ul>{listItems}</ul>
+    )
+    */
+
+    7.Responding to events
+    We can respond to events by declaring event handler functions inside our components:
+    /*
+    function MyButton(){
+        function handleClick(){
+            alert('Button is clicked');
+        }
+
+        return(
+           <button onClick={handleClick}>
+             Click it
+           </button>
+        );
+    }
+    */
+
+    8.Updating the screen
+    state-when we want our component to "remember" some information and display it.
+    like:
+    1st import useState from React:
+    /*
+        import {useState} from 'react';
+    */
+    2nd declare a state variable inside our component:
+    /*
+    function MyButton(){
+        const [count,setCount] = useState(0);
+    }
+    */
+    3nd we will get 2 things from useState: the current state(count), and the function that lets our update it (setCount).
+    We can give them any names, like [something, setSomething].
+    The 1st time the button is displayed, count will be 0 because we passed 0 to useState(). When we want to change state,
+    call setCount() and pass the new value to it. Clicking the button will increment the counter:
+    /*
+    function MyButton(){
+        const [count, setCount] = useState(0);
+
+        function handleClick() {
+            setCount(count + 1);
+        }
+
+        return (
+            <button onClick={handleClick}>
+                Clicked {count} times
+            </button>
+        )
+    }
+    */
+
+    9.What is Props
+    a shorthand for "properties", which are a way of passing data from parent to child components.
+    Used to customize and configure React components, allowing us to make our components dynamic and reusable.
+        a. Passing Data
+        b. Immutable
+        c. Customization:
+        d. Component Composition.
+
+    10.Using Hooks
+    Functions starting with use are called Hooks.
+    useState is a built-in Hook provided by React.
+    Hooks are more restrictive than other functions.
+    We can only call Hooks at the top of our components (or other Hooks).
+    if we want to use useState in a condition or a loop, extract a new component and put it there.
