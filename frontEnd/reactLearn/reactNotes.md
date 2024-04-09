@@ -1,4 +1,4 @@
-## 1. Creating and nesting components
+## 1. React Notes
 
 1. **What's a component?**
     - A component is a piece of the UI that has its own logic and appearance (e.g., a button or an entire page).
