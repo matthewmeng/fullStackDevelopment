@@ -28,9 +28,9 @@
 
     - **The Rules of JSX:**
         - Return a single root element.
-        - because JSX is transformed into plain JavaScript objects. We can't return 2 objects from a function without wrapping
-          them into an array.
-        - We need to use <></>
+            because JSX is transformed into plain JavaScript objects. We can't return 2 objects from a function without wrapping
+            them into an array.
+            We need to use <></>
         - Close all the tags.
         - camelCase most of the things! JavaScript has limitations on variable names, i.e., their names can't contain dashes or be reserved words like class.
 
@@ -76,3 +76,5 @@
     - A pure function:
         - Minds its own business. It does not change any objects or variables that existed before it was called.
         - Same inputs, same output. Given the same inputs, a pure function should always return the same result.
+
+
