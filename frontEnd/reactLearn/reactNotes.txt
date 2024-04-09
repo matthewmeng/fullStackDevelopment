@@ -27,6 +27,23 @@
     React library provides methods like 'React.createElement()' to achieve this transformation.
     So we need to import 'React' so that JSX can be transpiled correctly.
 
+    * What is JSX?
+    JSX is a syntax extension for JavaScript that lets us write HTML-like markup inside a JavaScript file
+    The Web has been built on HTML, CSS, and JavaScript. For many years, web developers kept content in HTML, design in
+    CSS, and logic in JavaScript -- often in separate files
+    But as the Web became more interactive, logic increasingly determined content. JavaScript was in charge of the HTML!
+    This is why in React, rendering logic and markup live together in the same place -- components.
+    (JSX is a syntax extension, while React is a JavaScript library.)
+
+    The Rules of JSX:
+        a. Return a single root element.
+        because JSX is transformed into plain JavaScript objects. We can't return 2 objects from a function without wrapping
+        them into an array.
+        We need to use <></>
+        b. Close all the tags
+        c. camelCase most of the things!
+        JavaScript has limitations on variable names. i.e. their names can't contain dashes or be reserved words like class.
+
     3.Why do we need 'export default XXX' XXX is the component;
     it is used to export the 'XXX' component in other files within our project. When we 'import' a component
     from another file, we usually use the 'export default' syntax to export it. This syntax allows us to import the
@@ -71,6 +88,8 @@
 
     5.Displaying data
     JSX lets us put markup into JavaScript.
+    When we want to add a little JavaScript logic or reference a dynamic property inside that markup. In this situation,
+    we can use curly braces in our JSX to open a window to JavaScript.
     i.e. to display user.name:
     /*
     return(
@@ -81,12 +100,25 @@
     */
 
     using curly braces instead of quotes to "escape into JavaScript":
+    const user = {
+        name:Mike, id:3, imageUrl:aurl.com.au
+    };
     return(
         <img
             className="avatar"
             src={user.imageUrl}
         />
     );
+    *Where to use curly braces
+    We can only use curly braces in two ways inside JSX:
+    1. As text directly inside a JSX tag: <h1>{name}'s To Do List</h1> works.
+    2. As attributes immediately following the = sign: src={avatar} will read the avatar variable, but src='{avatar}' will
+    pass the string "{avatar}".
+
+    "double curlies"
+    We could also pass objects in JSX. Objects are also denoted with curly braces, like{name:"Hedy Lamarr", inventions:5}.
+    Therefore, to pass a JS object in JSX, we must wrap the object in another pair of curly braces: person={{name:"Hedy Lamarr"
+    , inventions: 5}}. inline CSS styles is an example (Inline style properties are written in camelCase).
 
     5.Conditional rendering
     except original if statement,
@@ -183,3 +215,9 @@
     Hooks are more restrictive than other functions.
     We can only call Hooks at the top of our components (or other Hooks).
     if we want to use useState in a condition or a loop, extract a new component and put it there.
+
+    11.Keeping components pure
+    A pure function:
+    * Minds its own business. It does not change any objects or variables that existed before it was called.
+    * Same inputs, same output. Given the same inputs , a pure function should always return the same result.
+
