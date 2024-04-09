@@ -209,6 +209,13 @@
         c. Customization:
         d. Component Composition.
 
+    We can think of a component with a children prop as having a "hole" that can be "filled in" by its parent components
+    with arbitrary JSX. We will often use teh children prop for visual wrappers: panels, grids, etc.
+
+    A component may receive different props over time. Props are not always static.
+    However, props are immutable,which means unchangeable. A different props or changed props will be a new object.
+
+
     10.Using Hooks
     Functions starting with use are called Hooks.
     useState is a built-in Hook provided by React.
@@ -220,4 +227,3 @@
     A pure function:
     * Minds its own business. It does not change any objects or variables that existed before it was called.
     * Same inputs, same output. Given the same inputs , a pure function should always return the same result.
-
