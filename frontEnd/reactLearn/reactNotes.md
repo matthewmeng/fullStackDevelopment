@@ -27,12 +27,12 @@
         - JSX is a syntax extension for JavaScript that lets us write HTML-like markup inside a JavaScript file. The Web has been built on HTML, CSS, and JavaScript. For many years, web developers kept content in HTML, design in CSS, and logic in JavaScript -- often in separate files. But as the Web became more interactive, logic increasingly determined content. JavaScript was in charge of the HTML! This is why in React, rendering logic and markup live together in the same place -- components. (JSX is a syntax extension, while React is a JavaScript library.)
 
     - **The Rules of JSX:**
-        - Return a single root element.
-            because JSX is transformed into plain JavaScript objects. We can't return 2 objects from a function without wrapping
-            them into an array.
-            We need to use <></>
-        - Close all the tags.
-        - camelCase most of the things! JavaScript has limitations on variable names, i.e., their names can't contain dashes or be reserved words like class.
+        - a. Return a single root element.
+            - because JSX is transformed into plain JavaScript objects. We can't return 2 objects from a function without wrapping
+              them into an array.
+            - We need to use <></>
+        - b. Close all the tags.
+        - c. camelCase most of the things! JavaScript has limitations on variable names, i.e., their names can't contain dashes or be reserved words like class.
 
 3. **Why do we need `export default XXX`?**
     - It is used to export the 'XXX' component in other files within our project. When we 'import' a component from another file, we usually use the `export default` syntax to export it. This syntax allows us to import the component using any name we want in the importing file.
