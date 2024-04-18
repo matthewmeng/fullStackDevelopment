@@ -30,7 +30,7 @@
         - a. Return a single root element.
             - because JSX is transformed into plain JavaScript objects. We can't return 2 objects from a function without wrapping
               them into an array.
-            - We need to use <></>
+            - We need to use '<></>'
         - b. Close all the tags.
         - c. camelCase most of the things! JavaScript has limitations on variable names, i.e., their names can't contain dashes or be reserved words like class.
 
@@ -55,10 +55,46 @@
     - JSX lets us put markup into JavaScript. When we want to add a little JavaScript logic or reference a dynamic property inside that markup, we can use curly braces in our JSX to open a window to JavaScript.
 
 7. **Conditional rendering**
+    - In React, control flow (like conditions) is handled by JavaScript.
     - Except for the original `if` statement, we can use the conditional operator. If we don't need the else branch, we can also use a shorter logical `&&` syntax.
-
+    ```jsx
+   return (
+      <li className="item">
+        {name} {isPacked && '✔'}
+      </li>
+    );
+    ```
+   **Don't put numbers on the left side of '&&'**
+    Because to test the condition, JavaScript converts the left side to a boolean auto. However, if the left side is 0.
+    'messageCount && <p>New messages</p>' should be 'messageCount > 0 && <p>New messages</p>'
+    - Conditionally assigning JSX to a variable, This one will be the most verbose, but it's also the most flexible.
+    
 8. **Rendering lists**
+    - We could use the JavaScript array methods to manipulate an array of data. like 'filter()' and 'map()'
     - We rely on JavaScript features like `for` loop and the array `map()` function to render lists of components.
+    - Arrow functions '=>' implicitly return the expression right after '=>', so we didn't need a 'return' statement
+    ``` jsx
+    const listItems = chemists.map(person =>
+        <li>...</li> // Implicit return!
+    );
+    ```
+   However, we must write 'return' explicitly if our '=>' is followed by a '{' curly brace!
+    - key for each element is needed in JSX array.
+   - Where to get our 'key'?
+     - **Data from a database:** if our data is coming from a database, we can use the database keys/IDs, which are unique by nature.
+     - **Locally generated data:** if our data is generated and persisted locally, use an incrementing counter, 'crypto,randomUUID()' or a package like 'uuid' when creating items.
+   - Rules of keys
+     - **Keys must be unique among siblings**
+     - **Keys must not change**
+   - **Index as a key often leads to subtle and confusing bugs.**
+   - **Do not generate keys on the fly, e.g. with key={Math.random()}**
+   - **If our component needs an ID, we have to pass it as a separate prop:**
+   ``` jsx
+    <Profile key={id} userId={id} />
+   ```
+   
+   - 'push','pop','reverse','sort' will 'mutate' the original array
+   - but 'slice', 'filter','map' will create a new one. 
 
 9. **Responding to events**
     - We can respond to events by declaring event handler functions inside our components.
@@ -77,4 +113,8 @@
         - Minds its own business. It does not change any objects or variables that existed before it was called.
         - Same inputs, same output. Given the same inputs, a pure function should always return the same result.
 
+    - Detecting impure calculations with 'StrictMode'
+      - By calling the component functions twice, Strict Mode helps find components that break these rules. Pure functions only calculate, so calling them twice won't change anything.
+      - To opt into Strict Mode, we can wrap our root component into '<React.StrictMode>'. Some frameworks do this by default.
+    
 
